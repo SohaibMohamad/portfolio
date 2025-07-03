@@ -56,7 +56,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 15px 30px;
+      padding: 10px 30px; /* reduced padding for shorter menu */
       background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(10px);
       z-index: 100;
@@ -65,9 +65,8 @@
       align-items: center;
     }
 
-    /* Bigger logo in nav */
     nav .logo-nav {
-      height: 70px; /* increased */
+      height: 70px;
       width: auto;
       user-select: none;
       filter: drop-shadow(0 0 12px #00bfffcc);
@@ -79,7 +78,6 @@
       margin: 0 15px;
       font-weight: bold;
       transition: color 0.3s ease;
-      /* remove scale transform to prevent resizing */
       transform: none !important;
     }
 
@@ -87,7 +85,6 @@
       color: white;
       text-shadow: 0 0 8px #00bfff;
       cursor: pointer;
-      /* no scale on hover */
       transform: none !important;
     }
 
@@ -104,9 +101,8 @@
       gap: 20px;
     }
 
-    /* Bigger header logo */
     .header-logo {
-      height: 160px; /* increased */
+      height: 160px;
       width: auto;
       user-select: none;
       filter: drop-shadow(0 0 16px #00bfffcc);
@@ -114,7 +110,6 @@
       flex-shrink: 0;
     }
 
-    /* Re-adding description text under logo */
     .header-text {
       max-width: 600px;
       color: #cde7f0;
@@ -140,6 +135,7 @@
       border: 3px solid #7ee8fa;
       user-select: none;
       flex-shrink: 0;
+      object-fit: cover; /* ensures image covers circle without distortion */
     }
 
     section {
@@ -191,13 +187,29 @@
       order: 2;
     }
 
-    /* Trip planner screenshots container with floating overlapping images on right side */
+    /* Trip planner: text left, images right, keep images properties */
+    .project.left:nth-child(3) {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+    }
+    .project.left:nth-child(3) .text {
+      order: 1;
+      padding: 20px 40px 20px 0;
+      flex: 1;
+      max-width: 450px;
+    }
+    .project.left:nth-child(3) .trip-planner-screenshots {
+      order: 2;
+      margin-top: 0;
+      flex-shrink: 0;
+    }
+
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
       height: 430px;
       margin-top: 40px;
-      flex-shrink: 0;
     }
 
     .trip-planner-screenshots img {
@@ -279,12 +291,12 @@
       position: relative;
     }
 
+    /* Removed horizontal scroll for reviews */
     .card-wrapper {
       display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
       gap: 20px;
       padding: 10px;
+      overflow-x: visible !important; /* force visible */
       scrollbar-width: none;
     }
 
@@ -444,17 +456,14 @@
       }
     }
 
-    /* Universal text hover animation except nav links scaling removed */
     body * {
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    /* Prevent nav links scaling */
     nav a:hover {
       transform: none !important;
     }
 
-    /* Other elements keep scaling on hover */
     body *:not(nav a):hover {
       transform: scale(1.05);
       color: #00bfff !important;
@@ -474,7 +483,6 @@
   <div class="cursor-glow" id="cursor-glow"></div>
 
   <nav>
-    <!-- Bigger logo in nav replacing name -->
     <img src="slogo.png" alt="Sohyb Logo" class="logo-nav" />
     <div>
       <a href="#projects">Projects</a>
@@ -485,14 +493,11 @@
   </nav>
 
   <header>
-    <!-- Bigger logo on left -->
     <img src="slogo.png" alt="Sohyb Logo" class="header-logo" />
-    <!-- Description text under logo -->
     <div class="header-text">
       <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
       <p class="university">Engineering student at Al-Azhar University, Cairo</p>
     </div>
-    <!-- Profile photo on right -->
     <img src="sohyb.png" alt="Sohyb's Photo" class="profile" />
   </header>
 
