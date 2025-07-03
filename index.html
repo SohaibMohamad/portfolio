@@ -122,8 +122,8 @@
       background: transparent;
     }
 
-    /* 3D hover effect on images */
-    .project img:hover {
+    /* 3D hover effect on images except stars */
+    .project:not(.freelance-rating) img:hover {
       transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
       box-shadow:
         0 15px 40px rgba(0,191,255,0.6);
@@ -152,34 +152,85 @@
       order: 2;
     }
 
-    /* Gallery for trip planner screenshots */
-    .screenshot-gallery {
+    /* Trip planner screenshots stacked with subtle floating animation */
+    .trip-planner-container {
       display: flex;
-      gap: 15px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 30px;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .screenshot-gallery img {
-      width: 30%;
-      min-width: 120px;
-      border-radius: 10px;
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.35);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      transform-style: preserve-3d;
-      cursor: default;
+    .trip-planner-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .trip-planner-screenshots {
+      position: relative;
+      width: 320px;
+      height: 400px;
+      flex-shrink: 0;
+      perspective: 1200px;
+    }
+
+    .trip-planner-screenshots img {
+      position: absolute;
+      width: 280px;
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(0,191,255,0.5);
       background: transparent;
+      cursor: default;
+      user-select: none;
+      transition: box-shadow 0.3s ease;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-duration: 6s;
     }
 
-    .screenshot-gallery img:hover {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(25px);
-      box-shadow:
-        0 18px 50px rgba(0,191,255,0.8);
+    /* Stack them overlapped with slight vertical and horizontal offset */
+    .trip-planner-screenshots img:nth-child(1) {
+      top: 0;
+      left: 20px;
+      animation-name: float1;
+      z-index: 3;
+    }
+    .trip-planner-screenshots img:nth-child(2) {
+      top: 50px;
+      left: 0;
+      animation-name: float2;
+      z-index: 2;
+    }
+    .trip-planner-screenshots img:nth-child(3) {
+      top: 100px;
+      left: 40px;
+      animation-name: float3;
+      z-index: 1;
     }
 
-    /* Freelance rating section with floating stars */
+    /* Subtle vertical floating animations */
+    @keyframes float1 {
+      0% { transform: translateY(0px) rotateZ(-1deg); }
+      100% { transform: translateY(10px) rotateZ(1deg); }
+    }
+    @keyframes float2 {
+      0% { transform: translateY(10px) rotateZ(1deg); }
+      100% { transform: translateY(0px) rotateZ(-1deg); }
+    }
+    @keyframes float3 {
+      0% { transform: translateY(5px) rotateZ(0deg); }
+      100% { transform: translateY(-5px) rotateZ(2deg); }
+    }
+
+    .trip-planner-screenshots img:hover {
+      box-shadow: 0 20px 50px rgba(0,191,255,0.9);
+      animation-play-state: paused;
+      transform: scale(1.05);
+      z-index: 10 !important;
+    }
+
+    /* Freelance rating section with floating stars - no flip, subtle glow only */
     .freelance-rating.project {
       align-items: center;
       gap: 40px;
@@ -195,15 +246,14 @@
       border-radius: 0;
       background: transparent;
       box-shadow:
-        0 0 40px rgba(0, 191, 255, 0.9);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      transform-style: preserve-3d;
+        0 0 45px rgba(0, 191, 255, 0.9);
+      transition: box-shadow 0.6s ease;
       cursor: default;
       filter: drop-shadow(0 5px 8px rgba(0,0,0,0.45));
+      /* NO transform or flip on hover */
     }
 
     .freelance-rating img:hover {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(30px);
       box-shadow:
         0 0 70px rgba(0, 191, 255, 1);
       filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6));
@@ -225,13 +275,25 @@
         margin: 15px auto;
       }
 
-      .screenshot-gallery {
-        justify-content: center;
+      .trip-planner-container {
+        flex-direction: column;
+        height: auto;
       }
 
-      .screenshot-gallery img {
-        width: 80%;
-        min-width: auto;
+      .trip-planner-screenshots {
+        position: relative;
+        width: 90vw;
+        height: auto;
+        margin-top: 20px;
+      }
+
+      .trip-planner-screenshots img {
+        position: relative;
+        width: 90%;
+        margin: 10px auto;
+        animation: none !important;
+        box-shadow: 0 8px 20px rgba(0,191,255,0.5);
+        transform: none !important;
       }
 
       .freelance-rating img {
@@ -313,12 +375,13 @@
   </section>
 
   <section class="project right">
-    <div class="text" style="flex:1; min-width:280px;">
-      <h2>🧳 Trip Planner Web App</h2>
-      <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
-      <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank" rel="noopener">View Project →</a>
-
-      <div class="screenshot-gallery" aria-label="Trip planner screenshots">
+    <div class="trip-planner-container">
+      <div class="trip-planner-text">
+        <h2>🧳 Trip Planner Web App</h2>
+        <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
+        <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank" rel="noopener">View Project →</a>
+      </div>
+      <div class="trip-planner-screenshots" aria-label="Trip planner screenshots">
         <img src="MainMenu.png" alt="Trip Planner Main Menu Screenshot" />
         <img src="Charts.png" alt="Trip Planner Charts Screenshot" />
         <img src="Exp.png" alt="Trip Planner Expenses Screenshot" />
