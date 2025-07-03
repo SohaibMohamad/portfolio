@@ -65,12 +65,12 @@
       align-items: center;
     }
 
-    /* Logo in nav replacing name, bigger size */
+    /* Bigger logo in nav */
     nav .logo-nav {
-      height: 50px;
+      height: 70px; /* increased */
       width: auto;
       user-select: none;
-      filter: drop-shadow(0 0 8px #00bfffcc);
+      filter: drop-shadow(0 0 12px #00bfffcc);
     }
 
     nav a {
@@ -78,15 +78,22 @@
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
+      transition: color 0.3s ease;
+      /* remove scale transform to prevent resizing */
+      transform: none !important;
     }
 
     nav a:hover {
       color: white;
+      text-shadow: 0 0 8px #00bfff;
+      cursor: pointer;
+      /* no scale on hover */
+      transform: none !important;
     }
 
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       max-width: 960px;
       margin: 100px auto 40px;
@@ -94,20 +101,36 @@
       flex-wrap: wrap;
       position: relative;
       z-index: 1;
+      gap: 20px;
     }
 
-    /* Header left side with just logo, bigger size */
+    /* Bigger header logo */
     .header-logo {
-      height: 120px;
+      height: 160px; /* increased */
       width: auto;
       user-select: none;
-      filter: drop-shadow(0 0 12px #00bfffcc);
+      filter: drop-shadow(0 0 16px #00bfffcc);
       cursor: default;
+      flex-shrink: 0;
     }
 
-    /* Hide header text (name and descriptions) completely as per request */
+    /* Re-adding description text under logo */
     .header-text {
-      display: none;
+      max-width: 600px;
+      color: #cde7f0;
+      user-select: none;
+    }
+
+    .header-text p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .header-text .university {
+      margin-top: 8px;
+      color: #7ee8fa;
+      font-style: italic;
+      font-size: 1rem;
     }
 
     header img.profile {
@@ -116,6 +139,7 @@
       border-radius: 50%;
       border: 3px solid #7ee8fa;
       user-select: none;
+      flex-shrink: 0;
     }
 
     section {
@@ -173,6 +197,7 @@
       width: 320px;
       height: 430px;
       margin-top: 40px;
+      flex-shrink: 0;
     }
 
     .trip-planner-screenshots img {
@@ -200,7 +225,6 @@
       100% { transform: translateY(10px); }
     }
 
-    /* Freelance stars styling fix */
     .freelance img {
       max-width: 320px;
       margin: 0 20px;
@@ -324,7 +348,6 @@
       color: #00bfff;
     }
 
-    /* Cursor dots */
     .cursor-dot {
       width: 12px;
       height: 12px;
@@ -351,12 +374,10 @@
 
     @media (max-width: 768px) {
       header { flex-direction: column; text-align: center; }
-      /* Hide header logo on mobile if needed, or center it */
       .header-logo {
         margin-bottom: 20px;
       }
       .project { flex-direction: column; }
-      /* Trip planner screenshots stacked horizontally on small */
       .trip-planner-screenshots {
         width: 90vw;
         height: auto;
@@ -423,12 +444,18 @@
       }
     }
 
-    /* Universal text hover animation */
+    /* Universal text hover animation except nav links scaling removed */
     body * {
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    body *:hover {
+    /* Prevent nav links scaling */
+    nav a:hover {
+      transform: none !important;
+    }
+
+    /* Other elements keep scaling on hover */
+    body *:not(nav a):hover {
       transform: scale(1.05);
       color: #00bfff !important;
       cursor: pointer;
@@ -447,7 +474,7 @@
   <div class="cursor-glow" id="cursor-glow"></div>
 
   <nav>
-    <!-- Replace Sohyb text with logo in nav -->
+    <!-- Bigger logo in nav replacing name -->
     <img src="slogo.png" alt="Sohyb Logo" class="logo-nav" />
     <div>
       <a href="#projects">Projects</a>
@@ -458,8 +485,14 @@
   </nav>
 
   <header>
-    <!-- Only show the logo, no name or text -->
+    <!-- Bigger logo on left -->
     <img src="slogo.png" alt="Sohyb Logo" class="header-logo" />
+    <!-- Description text under logo -->
+    <div class="header-text">
+      <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
+      <p class="university">Engineering student at Al-Azhar University, Cairo</p>
+    </div>
+    <!-- Profile photo on right -->
     <img src="sohyb.png" alt="Sohyb's Photo" class="profile" />
   </header>
 
