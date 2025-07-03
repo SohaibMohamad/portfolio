@@ -3,49 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name | Fullstack Developer</title>
+  <title>Sohyb | Fullstack Developer</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      cursor: none; /* We'll replace default cursor */
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #eee;
-      overflow-x: hidden;
-      position: relative;
+      cursor: none;
     }
 
     html {
       scroll-behavior: smooth;
     }
 
-    /* Cool custom cursor */
-    .cursor-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #00bfff;
-      position: fixed;
-      pointer-events: none;
-      z-index: 1000;
-      transform: translate(-50%, -50%);
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #eee;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* Navbar */
     nav {
-      width: 100%;
-      padding: 15px 30px;
       position: fixed;
       top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(10px);
-      z-index: 999;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,26 +42,24 @@
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
-      font-size: 1rem;
     }
 
     nav a:hover {
-      color: #ffffff;
+      color: white;
     }
 
     header {
-      padding: 120px 20px 40px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       max-width: 960px;
-      margin: auto;
+      margin: 100px auto 40px;
+      padding: 0 20px;
+      flex-wrap: wrap;
     }
 
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid #7ee8fa;
-      margin-bottom: 20px;
+    .header-text {
+      max-width: 600px;
     }
 
     header h1 {
@@ -87,8 +71,6 @@
     header p {
       font-size: 1.2rem;
       color: #cde7f0;
-      max-width: 700px;
-      margin: 0 auto 10px;
     }
 
     .university {
@@ -97,9 +79,16 @@
       font-style: italic;
     }
 
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #7ee8fa;
+    }
+
     section {
       max-width: 960px;
-      margin: 50px auto;
+      margin: 40px auto;
       padding: 20px;
     }
 
@@ -107,36 +96,23 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 60px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
+      margin-bottom: 50px;
       padding: 20px;
       position: relative;
+    }
+
+    .project img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin: 10px;
     }
 
     .project .text {
       flex: 1;
       padding: 20px;
-      color: #d4f1f9;
-    }
-
-    .project img {
-      max-width: 400px;
-      width: 100%;
-      border-radius: 8px;
-      margin: 10px;
-      position: relative;
-    }
-
-    .project img:hover::after {
-      content: '🔍 View Project';
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
     }
 
     .left .text {
@@ -155,7 +131,7 @@
       order: 2;
     }
 
-    /* Trip planner stacked images */
+    /* Trip planner stacked floating */
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
@@ -167,19 +143,21 @@
       width: 280px;
       border-radius: 14px;
       box-shadow: 0 15px 35px rgba(0, 191, 255, 0.5);
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease, z-index 0.2s ease;
+      animation: float 6s ease-in-out infinite alternate;
+      cursor: pointer;
     }
 
     .trip-planner-screenshots img:nth-child(1) {
       top: 0;
       left: 20px;
-      z-index: 3;
+      z-index: 1;
     }
 
     .trip-planner-screenshots img:nth-child(2) {
       top: 50px;
       left: 0;
-      z-index: 2;
+      z-index: 1;
     }
 
     .trip-planner-screenshots img:nth-child(3) {
@@ -188,10 +166,19 @@
       z-index: 1;
     }
 
+    .trip-planner-screenshots img:hover {
+      z-index: 5;
+      transform: scale(1.05) rotateZ(2deg);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(10px); }
+    }
+
     .freelance img {
       max-width: 280px;
       margin: 0 20px;
-      background: transparent;
       transform: translateX(-30px);
     }
 
@@ -230,31 +217,67 @@
       color: #00bfff;
     }
 
+    /* Custom cursor + glow on click */
+    .cursor-dot {
+      width: 12px;
+      height: 12px;
+      background: #00bfff;
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 191, 255, 0.2);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 999;
+    }
+
     @media (max-width: 768px) {
-      .project {
+      header {
         flex-direction: column;
         text-align: center;
       }
+
+      header img {
+        margin-top: 20px;
+      }
+
+      .project {
+        flex-direction: column;
+      }
+
       .trip-planner-screenshots {
-        position: relative;
         width: 90vw;
         height: auto;
       }
+
       .trip-planner-screenshots img {
         position: relative;
-        margin: 10px 0;
+        margin: 10px auto;
+        animation: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor Dot -->
+  <!-- Cursor -->
   <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-glow" id="cursor-glow"></div>
 
   <!-- Navbar -->
   <nav>
-    <div><strong>Your Name</strong></div>
+    <div><strong>Sohyb</strong></div>
     <div>
       <a href="#projects">Projects</a>
       <a href="#archive">Archive</a>
@@ -262,42 +285,47 @@
     </div>
   </nav>
 
+  <!-- Header -->
   <header>
-    <img src="your-photo.jpg" alt="Your Photo" />
-    <h1>Your Name</h1>
-    <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
-    <p class="university">Studying Engineering at Al-Azhar University, Cairo</p>
+    <div class="header-text">
+      <h1>Sohyb</h1>
+      <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
+      <p class="university">Engineering student at Al-Azhar University, Cairo</p>
+    </div>
+    <img src="your-photo.jpg" alt="Sohyb's Photo" />
   </header>
 
+  <!-- Projects -->
   <section id="projects">
+
     <!-- Project 1 -->
     <div class="project left">
-      <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Map">
+      <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
       <div class="text">
         <h2>🚍 Transport Map of Egypt</h2>
-        <p>Web map using Leaflet.js and processed Google Maps JSON for private/public transit in Cairo.</p>
+        <p>Interactive map using Leaflet.js showing public/private transport. Data parsed from Google Maps JSON.</p>
       </div>
     </div>
 
-    <!-- Project 2 -->
-    <div class="project left">
+    <!-- Trip Planner -->
+    <div class="project right">
       <div class="text">
         <h2>🧳 Trip Planner Web App</h2>
-        <p>Modern planner app in ReactJS with budget visualization, travel tracking, and clean UI.</p>
+        <p>Budgeting, planning, and visualization in one modern ReactJS app. With floating UI cards and charting features.</p>
       </div>
-      <div class="trip-planner-screenshots">
-        <img src="MainMenu.png" alt="Main Menu" />
-        <img src="Charts.png" alt="Charts" />
-        <img src="Exp.png" alt="Expenses" />
+      <div class="trip-planner-screenshots" id="tripScreens">
+        <img src="MainMenu.png" />
+        <img src="Charts.png" />
+        <img src="Exp.png" />
       </div>
     </div>
 
     <!-- Freelance -->
-    <div class="project freelance right">
-      <img src="stars.png" alt="5 Stars" />
+    <div class="project left freelance">
+      <img src="stars.png" alt="5 Stars Rating" />
       <div class="text">
         <h2>🌟 Freelance Experience</h2>
-        <p>5-star rated on Mostaql as a web/graphic designer using WordPress and built stores. Professional panels and clean designs.</p>
+        <p>5-star rated Mostaql freelancer. Built responsive stores and UI panels using WordPress & custom design tools.</p>
       </div>
     </div>
   </section>
@@ -314,16 +342,36 @@
   </section>
 
   <footer id="contact">
-    <p>Contact: <a href="mailto:you@example.com">you@example.com</a></p>
-    <p>© 2025 Your Name</p>
+    <p>Contact: <a href="mailto:sohyb@example.com">sohyb@example.com</a></p>
+    <p>© 2025 Sohyb</p>
   </footer>
 
+  <!-- JS for cursor + trip planner interactivity -->
   <script>
-    // Cool cursor dot
-    const cursor = document.getElementById('cursor-dot');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+    // Cool cursor dot and glow
+    const dot = document.getElementById('cursor-dot');
+    const glow = document.getElementById('cursor-glow');
+
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = glow.style.left = e.clientX + 'px';
+      dot.style.top = glow.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('click', () => {
+      glow.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      glow.style.transition = 'transform 0.2s ease-out';
+      setTimeout(() => {
+        glow.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 150);
+    });
+
+    // Trip planner: bring clicked image to front
+    const images = document.querySelectorAll('#tripScreens img');
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        images.forEach(i => i.style.zIndex = '1');
+        img.style.zIndex = '6';
+      });
     });
   </script>
 
