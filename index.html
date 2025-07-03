@@ -2,111 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Name | Fullstack Developer</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      cursor: none; /* We'll replace default cursor */
     }
 
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #eee;
-      min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Abstract SVG shapes in background */
-    .abstract-shape {
-      position: absolute;
-      z-index: 0;
-      opacity: 0.05;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Cool custom cursor */
+    .cursor-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #00bfff;
+      position: fixed;
       pointer-events: none;
+      z-index: 1000;
+      transform: translate(-50%, -50%);
     }
 
-    .shape1 {
-      top: 50px;
+    /* Navbar */
+    nav {
+      width: 100%;
+      padding: 15px 30px;
+      position: fixed;
+      top: 0;
       left: 0;
-      width: 600px;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .shape2 {
-      bottom: 100px;
-      right: 0;
-      width: 700px;
+    nav a {
+      color: #7ee8fa;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #ffffff;
     }
 
     header {
-      padding: 80px 20px 40px;
+      padding: 120px 20px 40px;
       text-align: center;
-      position: relative;
-      z-index: 2;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #7ee8fa;
+      margin-bottom: 20px;
     }
 
     header h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: #a6e3e9;
-      text-shadow: 0 0 8px #00bfff;
       margin-bottom: 10px;
     }
 
     header p {
       font-size: 1.2rem;
-      max-width: 700px;
-      margin: 10px auto;
       color: #cde7f0;
-      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto 10px;
     }
 
-    header p.university {
-      margin-top: 15px;
-      font-style: italic;
+    .university {
+      margin-top: 10px;
       color: #7ee8fa;
-      font-weight: 600;
+      font-style: italic;
     }
 
     section {
       max-width: 960px;
       margin: 50px auto;
       padding: 20px;
-      position: relative;
-      z-index: 2;
     }
 
     .project {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      margin-bottom: 60px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 60px;
-      backdrop-filter: blur(6px);
-      overflow: visible;
-    }
-
-    .project img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 8px;
-      margin: 10px;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .project:not(.freelance-rating) img:hover {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
-      box-shadow: 0 15px 40px rgba(0,191,255,0.6);
+      position: relative;
     }
 
     .project .text {
       flex: 1;
       padding: 20px;
-      min-width: 280px;
       color: #d4f1f9;
+    }
+
+    .project img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 8px;
+      margin: 10px;
+      position: relative;
+    }
+
+    .project img:hover::after {
+      content: '🔍 View Project';
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
     }
 
     .left .text {
@@ -125,35 +155,19 @@
       order: 2;
     }
 
-    /* Trip Planner: keep text on left, images on right */
-    .trip-planner-container {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .trip-planner-text {
-      flex: 1;
-      min-width: 280px;
-    }
-
+    /* Trip planner stacked images */
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
       height: 400px;
-      flex-shrink: 0;
-      perspective: 1200px;
     }
 
     .trip-planner-screenshots img {
       position: absolute;
       width: 280px;
       border-radius: 14px;
-      box-shadow: 0 15px 35px rgba(0,191,255,0.5);
-      transition: box-shadow 0.3s ease;
-      animation: float 6s ease-in-out infinite alternate;
+      box-shadow: 0 15px 35px rgba(0, 191, 255, 0.5);
+      transition: transform 0.3s ease;
     }
 
     .trip-planner-screenshots img:nth-child(1) {
@@ -174,54 +188,18 @@
       z-index: 1;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px) rotateZ(-1deg); }
-      100% { transform: translateY(10px) rotateZ(1deg); }
-    }
-
-    .freelance-rating img {
+    .freelance img {
       max-width: 280px;
       margin: 0 20px;
       background: transparent;
-      box-shadow: none;
-      transform: translateX(-30px) translateY(-10px);
-      z-index: 3;
-    }
-
-    @media (max-width: 768px) {
-      .project {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .trip-planner-container {
-        flex-direction: column;
-      }
-
-      .trip-planner-screenshots {
-        width: 90vw;
-        height: auto;
-      }
-
-      .trip-planner-screenshots img {
-        position: relative;
-        width: 90%;
-        margin: 10px auto;
-        animation: none;
-        transform: none !important;
-      }
-
-      .freelance-rating img {
-        transform: none;
-        margin: 20px auto;
-      }
+      transform: translateX(-30px);
     }
 
     .archive {
-      max-width: 900px;
-      margin: 40px auto 80px;
-      padding: 20px;
-      color: #c1e4f6;
+      padding: 30px;
+      background: rgba(255,255,255,0.05);
+      max-width: 960px;
+      margin: 50px auto;
     }
 
     .archive h2 {
@@ -235,68 +213,77 @@
     }
 
     .archive li {
-      margin: 12px 0;
-      border-left: 4px solid #00bfff;
+      margin: 10px 0;
       padding-left: 12px;
-      font-weight: 600;
+      border-left: 3px solid #00bfff;
+      font-weight: bold;
     }
 
     footer {
-      background: #111;
-      color: #89cffa;
       text-align: center;
-      padding: 30px 20px;
-      margin-top: 50px;
+      padding: 30px;
+      background: #111;
+      color: #7ee8fa;
     }
 
     footer a {
       color: #00bfff;
     }
 
-    a {
-      color: #55c8ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      color: #a0eaff;
+    @media (max-width: 768px) {
+      .project {
+        flex-direction: column;
+        text-align: center;
+      }
+      .trip-planner-screenshots {
+        position: relative;
+        width: 90vw;
+        height: auto;
+      }
+      .trip-planner-screenshots img {
+        position: relative;
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- SVG abstract background shapes -->
-  <svg class="abstract-shape shape1" viewBox="0 0 200 200">
-    <path fill="#ffffff" d="M43.6,-67.7C56.1,-57.7,65.6,-43.4,68.3,-28.8C70.9,-14.2,66.7,0.7,62.8,17.1C58.8,33.5,55.1,51.4,44.4,61.9C33.8,72.3,16.9,75.2,1.6,73.3C-13.8,71.5,-27.7,64.9,-40.3,55.6C-53,46.3,-64.3,34.3,-66.4,21.3C-68.4,8.3,-61.2,-5.6,-56.2,-21.3C-51.1,-37,-48.1,-54.5,-37.3,-65.7C-26.4,-76.9,-7.8,-81.7,8.5,-80.4C24.8,-79.2,49.2,-71.9,43.6,-67.7Z" transform="translate(100 100)" />
-  </svg>
+  <!-- Custom Cursor Dot -->
+  <div class="cursor-dot" id="cursor-dot"></div>
 
-  <svg class="abstract-shape shape2" viewBox="0 0 200 200">
-    <path fill="#ffffff" d="M46.7,-69.5C58.3,-56.8,64.3,-39.5,64.2,-24.1C64.1,-8.6,57.8,5.8,51.1,20.2C44.5,34.6,37.5,49.1,25.7,55.7C14,62.3,-2.4,61.1,-18.4,56.3C-34.4,51.4,-49.9,42.9,-57.5,30.4C-65.1,18,-64.8,1.7,-60.3,-13.1C-55.8,-27.9,-47.1,-41.2,-35.8,-53.1C-24.5,-65.1,-12.3,-75.8,2.6,-79.5C17.5,-83.2,35,-79.9,46.7,-69.5Z" transform="translate(100 100)" />
-  </svg>
+  <!-- Navbar -->
+  <nav>
+    <div><strong>Your Name</strong></div>
+    <div>
+      <a href="#projects">Projects</a>
+      <a href="#archive">Archive</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
   <header>
+    <img src="your-photo.jpg" alt="Your Photo" />
     <h1>Your Name</h1>
     <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
     <p class="university">Studying Engineering at Al-Azhar University, Cairo</p>
-    <p>I build responsive web apps with solid UX, clean components, and performance in mind. My CP journey sharpened my logic and C++ skills.</p>
   </header>
 
-  <section class="project left">
-    <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
-    <div class="text">
-      <h2>🚍 Transport Map of Egypt</h2>
-      <p>Web map using Leaflet.js to show public/private transport in Egypt. Parsed Google Maps JSON to draw custom metro and bus routes.</p>
-      <a href="#">View Project →</a>
+  <section id="projects">
+    <!-- Project 1 -->
+    <div class="project left">
+      <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Map">
+      <div class="text">
+        <h2>🚍 Transport Map of Egypt</h2>
+        <p>Web map using Leaflet.js and processed Google Maps JSON for private/public transit in Cairo.</p>
+      </div>
     </div>
-  </section>
 
-  <section class="project right">
-    <div class="trip-planner-container">
-      <div class="trip-planner-text text">
+    <!-- Project 2 -->
+    <div class="project left">
+      <div class="text">
         <h2>🧳 Trip Planner Web App</h2>
-        <p>Modern React app with budget tracking, visual charts, and travel planning. Features dynamic routing and financial breakdowns with clean UI.</p>
-        <a href="#">View Project →</a>
+        <p>Modern planner app in ReactJS with budget visualization, travel tracking, and clean UI.</p>
       </div>
       <div class="trip-planner-screenshots">
         <img src="MainMenu.png" alt="Main Menu" />
@@ -304,30 +291,41 @@
         <img src="Exp.png" alt="Expenses" />
       </div>
     </div>
-  </section>
 
-  <section class="project left freelance-rating">
-    <img src="stars.png" alt="5 Stars" />
-    <div class="text">
-      <h2>🌟 Freelance Experience</h2>
-      <p>5-star rated on Mostaql as a web and graphic designer. Delivered clean store panels and WordPress customizations. Reliable, fast, and pixel-perfect.</p>
-      <a href="#">View Freelance Profile →</a>
+    <!-- Freelance -->
+    <div class="project freelance right">
+      <img src="stars.png" alt="5 Stars" />
+      <div class="text">
+        <h2>🌟 Freelance Experience</h2>
+        <p>5-star rated on Mostaql as a web/graphic designer using WordPress and built stores. Professional panels and clean designs.</p>
+      </div>
     </div>
   </section>
 
-  <section class="archive">
+  <!-- Archive -->
+  <section class="archive" id="archive">
     <h2>📌 Highlights</h2>
     <ul>
       <li>🏆 ECPC Teens – 2x Honorable Mention, 38th onsite qualifier</li>
-      <li>🌍 EOI Junior Division 2021 & IIOT Egyptian Qualification (Port Said)</li>
-      <li>💻 Stack: HTML, CSS, JavaScript, React, Python, C++, Java</li>
-      <li>📜 English: C2 EFSET Certificate</li>
+      <li>🌍 EOI Junior Division 2021 & IIOT Qualification (Port Said)</li>
+      <li>💻 Stack: HTML, CSS, JS, React, Python, Java, C++</li>
+      <li>📜 EFSET C2 English Certificate</li>
     </ul>
   </section>
 
-  <footer>
+  <footer id="contact">
     <p>Contact: <a href="mailto:you@example.com">you@example.com</a></p>
-    <p>&copy; 2025 Your Name</p>
+    <p>© 2025 Your Name</p>
   </footer>
+
+  <script>
+    // Cool cursor dot
+    const cursor = document.getElementById('cursor-dot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+  </script>
+
 </body>
 </html>
