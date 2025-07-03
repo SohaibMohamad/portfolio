@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      /* Removed cursor:none to enable normal cursor */
+      cursor: none;
     }
 
     html {
@@ -56,7 +56,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 10px 30px; /* shorter header menu */
+      padding: 10px 30px;
       background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(10px);
       z-index: 100;
@@ -78,7 +78,6 @@
       margin: 0 15px;
       font-weight: bold;
       transition: color 0.3s ease;
-      /* prevent resizing on hover */
       transform: none !important;
     }
 
@@ -129,18 +128,20 @@
       font-size: 1rem;
     }
 
-    /* Profile photo styles */
     header img.profile {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       border: 4px solid #7ee8fa;
-      object-fit: cover;
+      object-fit: cover; /* Keep cover for cropping */
+      object-position: center center; /* Center the image */
       user-select: none;
       flex-shrink: 0;
       cursor: default;
       display: block;
       box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+      /* Added padding and background to avoid photo overflow */
+      background-color: #000; /* optional, for contrast */
     }
 
     section {
@@ -176,7 +177,23 @@
       padding: 20px;
     }
 
-    /* Trip planner text on left, images on right, images keep style */
+    .left .text {
+      order: 2;
+    }
+
+    .left img {
+      order: 1;
+    }
+
+    .right .text {
+      order: 1;
+    }
+
+    .right img {
+      order: 2;
+    }
+
+    /* Trip planner: text left, images right, keep images properties */
     .project.left:nth-child(3) {
       display: flex;
       flex-wrap: nowrap;
@@ -192,9 +209,13 @@
       order: 2;
       margin-top: 0;
       flex-shrink: 0;
+    }
+
+    .trip-planner-screenshots {
+      position: relative;
       width: 320px;
       height: 430px;
-      position: relative;
+      margin-top: 40px;
     }
 
     .trip-planner-screenshots img {
@@ -276,7 +297,7 @@
       position: relative;
     }
 
-    /* Remove scroll on review cards, show all cards inline */
+    /* Removed horizontal scroll for reviews */
     .card-wrapper {
       display: flex;
       gap: 20px;
@@ -306,7 +327,6 @@
       transform: scale(1.05);
     }
 
-    /* Uniform review images */
     .cert-card img {
       width: 100%;
       max-height: 120px;
@@ -316,15 +336,21 @@
       transition: transform 0.3s ease;
     }
 
-    /* Bigger image for review3 */
+    /* Increase review3 image size */
     .cert-card:nth-child(3) img {
-      max-height: 160px;
+      max-height: 180px; /* bigger */
     }
 
-    /* Hide scroll buttons */
     .scroll-btn {
       display: none;
     }
+
+    .scroll-btn:hover {
+      background: #0099cc;
+    }
+
+    .scroll-btn.left { margin-right: 10px; }
+    .scroll-btn.right { margin-left: 10px; }
 
     footer {
       text-align: center;
@@ -373,9 +399,9 @@
         height: auto;
       }
       .trip-planner-screenshots img {
-        position: relative !important;
+        position: relative;
         margin: 10px auto;
-        animation: none !important;
+        animation: none;
         top: auto !important;
         left: auto !important;
         transform: scale(1) !important;
@@ -383,7 +409,7 @@
       }
     }
 
-    /* Shooting stars, shooting tip-first */
+    /* Shooting stars */
     .shooting-stars {
       position: fixed;
       top: 0;
@@ -403,12 +429,13 @@
       top: -10%;
       width: 3px;
       height: 80px;
-      background: linear-gradient(0deg, white 0%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(135deg, white 0%, rgba(255,255,255,0) 100%);
       filter: drop-shadow(0 0 6px white);
       opacity: 0.7;
       border-radius: 50%;
       animation: shoot 3.5s linear infinite;
-      transform-origin: bottom center;  /* tip is bottom center */
+      transform-origin: top center; /* Changed from bottom center to top center */
+      transform: rotate(45deg); /* rotate so tip is pointing bottom right */
     }
 
     .shooting-stars::before {
@@ -435,7 +462,10 @@
       }
     }
 
-    /* Prevent header menu resizing on hover */
+    body * {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
     nav a:hover {
       transform: none !important;
     }
@@ -589,7 +619,7 @@
       });
     });
 
-    // Scroll cards function (not used because buttons hidden)
+    // Scroll cards function
     function scrollCards(direction) {
       const wrapper = document.getElementById('cardWrapper');
       const scrollAmount = 240;
