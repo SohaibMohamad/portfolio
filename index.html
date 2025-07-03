@@ -137,6 +137,9 @@
   user-select: none;
   flex-shrink: 0;
   cursor: default;
+  display: block;
+  /* Optional: add subtle shadow for nicer look */
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
 }
 
     section {
@@ -324,10 +327,14 @@
 
     .cert-card img {
   width: 100%;
-  max-height: 120px; /* limit max height */
-  object-fit: contain; /* fit fully without cropping */
+  max-height: 120px;
+  object-fit: contain;
   border-radius: 8px;
   user-select: none;
+  transition: transform 0.3s ease;
+}
+    .cert-card:nth-child(3) img {
+  max-height: 160px;
 }
 
     .scroll-btn {
@@ -411,43 +418,43 @@
     }
 
     .shooting-stars::before,
-    .shooting-stars::after {
-      content: '';
-      position: absolute;
-      top: -10%;
-      width: 3px;
-      height: 80px;
-      background: linear-gradient(90deg, white 0%, rgba(255,255,255,0) 100%);
-      filter: drop-shadow(0 0 6px white);
-      opacity: 0.7;
-      border-radius: 50%;
-      animation: shoot 3.5s linear infinite;
-      transform-origin: left center;
-    }
+.shooting-stars::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  width: 3px;
+  height: 80px;
+  background: linear-gradient(0deg, white 0%, rgba(255,255,255,0) 100%);
+  filter: drop-shadow(0 0 6px white);
+  opacity: 0.7;
+  border-radius: 50%;
+  animation: shoot 3.5s linear infinite;
+  transform-origin: bottom center;  /* changed from left center */
+}
 
-    .shooting-stars::before {
-      left: 20%;
-      animation-delay: 0s;
-    }
+.shooting-stars::before {
+  left: 20%;
+  animation-delay: 0s;
+}
 
-    .shooting-stars::after {
-      left: 60%;
-      animation-delay: 1.7s;
-    }
+.shooting-stars::after {
+  left: 60%;
+  animation-delay: 1.7s;
+}
 
-    @keyframes shoot {
-      0% {
-        transform: translate(0, 0) rotate(45deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: translate(120vw, 120vh) rotate(45deg);
-        opacity: 0;
-      }
-    }
+@keyframes shoot {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120vw, 120vh) rotate(45deg);
+    opacity: 0;
+  }
+}
 
     body * {
       transition: transform 0.3s ease, color 0.3s ease;
