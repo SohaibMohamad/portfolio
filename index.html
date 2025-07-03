@@ -24,6 +24,35 @@
       position: relative;
     }
 
+    /* Abstract shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      z-index: 0;
+    }
+
+    .shape.one {
+      width: 200px;
+      height: 200px;
+      top: 100px;
+      left: -80px;
+    }
+
+    .shape.two {
+      width: 300px;
+      height: 300px;
+      top: 600px;
+      right: -150px;
+    }
+
+    .shape.three {
+      width: 150px;
+      height: 150px;
+      bottom: 200px;
+      left: 100px;
+    }
+
     nav {
       position: fixed;
       top: 0;
@@ -56,6 +85,8 @@
       margin: 100px auto 40px;
       padding: 0 20px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .header-text {
@@ -90,6 +121,8 @@
       max-width: 960px;
       margin: 40px auto;
       padding: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .project {
@@ -101,6 +134,7 @@
       margin-bottom: 50px;
       padding: 20px;
       position: relative;
+      overflow: visible;
     }
 
     .project img {
@@ -135,7 +169,8 @@
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
-      height: 400px;
+      height: 430px;
+      margin-top: 40px;
     }
 
     .trip-planner-screenshots img {
@@ -149,19 +184,19 @@
     }
 
     .trip-planner-screenshots img:nth-child(1) {
-      top: 0;
+      top: 10px;
       left: 20px;
       z-index: 1;
     }
 
     .trip-planner-screenshots img:nth-child(2) {
-      top: 50px;
+      top: 60px;
       left: 0;
       z-index: 1;
     }
 
     .trip-planner-screenshots img:nth-child(3) {
-      top: 100px;
+      top: 110px;
       left: 40px;
       z-index: 1;
     }
@@ -176,10 +211,12 @@
       100% { transform: translateY(10px); }
     }
 
+    /* Freelance image adjustment */
     .freelance img {
-      max-width: 280px;
+      max-width: 320px;
       margin: 0 20px;
-      transform: translateX(-30px);
+      transform: translateX(-40px) scale(1.2);
+      z-index: 2;
     }
 
     .archive {
@@ -271,7 +308,12 @@
 </head>
 <body>
 
-  <!-- Cursor -->
+  <!-- Abstract shapes -->
+  <div class="shape one"></div>
+  <div class="shape two"></div>
+  <div class="shape three"></div>
+
+  <!-- Custom cursor -->
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-glow" id="cursor-glow"></div>
 
@@ -341,14 +383,14 @@
     </ul>
   </section>
 
+  <!-- Footer -->
   <footer id="contact">
     <p>Contact: <a href="mailto:sohyb@example.com">sohyb@example.com</a></p>
     <p>© 2025 Sohyb</p>
   </footer>
 
-  <!-- JS for cursor + trip planner interactivity -->
+  <!-- JS for cursor and image interaction -->
   <script>
-    // Cool cursor dot and glow
     const dot = document.getElementById('cursor-dot');
     const glow = document.getElementById('cursor-glow');
 
@@ -365,7 +407,6 @@
       }, 150);
     });
 
-    // Trip planner: bring clicked image to front
     const images = document.querySelectorAll('#tripScreens img');
     images.forEach(img => {
       img.addEventListener('click', () => {
