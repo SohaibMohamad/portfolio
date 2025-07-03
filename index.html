@@ -47,6 +47,18 @@
       max-width: 400px;
       border-radius: 8px;
       margin: 10px;
+      box-shadow:
+        0 8px 15px rgba(0,0,0,0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+      cursor: default;
+    }
+
+    /* 3D hover effect on project images */
+    .project img:hover {
+      transform: rotateY(15deg) rotateX(8deg) translateZ(15px);
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.3);
     }
 
     .project .text {
@@ -102,6 +114,52 @@
       text-decoration: underline;
     }
 
+    /* Freelance Rating Section */
+    .freelance-rating {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .freelance-rating h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .stars-container {
+      display: inline-block;
+      position: relative;
+      perspective: 800px;
+      cursor: default;
+    }
+
+    .stars-container img {
+      width: 250px;
+      max-width: 90vw;
+      border-radius: 12px;
+      box-shadow:
+        0 8px 15px rgba(0,0,0,0.3),
+        0 0 30px rgba(0,191,255,0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .stars-container:hover img {
+      transform: rotateY(15deg) rotateX(8deg) translateZ(15px);
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.4),
+        0 0 40px rgba(0,191,255,0.7);
+    }
+
+    .freelance-rating p {
+      margin-top: 15px;
+      font-weight: 600;
+      color: #007acc;
+      font-size: 1.2rem;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .project {
         flex-direction: column;
@@ -141,6 +199,15 @@
       <h2>🧳 Trip Planner Web App</h2>
       <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
       <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank">View Project →</a>
+    </div>
+  </section>
+
+  <!-- Freelance Rating Section -->
+  <section class="freelance-rating">
+    <h2>🌟 Freelance Rating</h2>
+    <div class="stars-container">
+      <img src="stars.png" alt="5 Stars Rating" />
+      <p>5-star rating on Mostaql.com freelance platform</p>
     </div>
   </section>
 
