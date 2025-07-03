@@ -24,7 +24,6 @@
       position: relative;
     }
 
-    /* Abstract shapes */
     .shape {
       position: absolute;
       border-radius: 50%;
@@ -165,7 +164,6 @@
       order: 2;
     }
 
-    /* Trip planner stacked floating */
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
@@ -183,23 +181,9 @@
       cursor: pointer;
     }
 
-    .trip-planner-screenshots img:nth-child(1) {
-      top: 10px;
-      left: 20px;
-      z-index: 1;
-    }
-
-    .trip-planner-screenshots img:nth-child(2) {
-      top: 60px;
-      left: 0;
-      z-index: 1;
-    }
-
-    .trip-planner-screenshots img:nth-child(3) {
-      top: 110px;
-      left: 40px;
-      z-index: 1;
-    }
+    .trip-planner-screenshots img:nth-child(1) { top: 10px; left: 20px; z-index: 1; }
+    .trip-planner-screenshots img:nth-child(2) { top: 60px; left: 0; z-index: 1; }
+    .trip-planner-screenshots img:nth-child(3) { top: 110px; left: 40px; z-index: 1; }
 
     .trip-planner-screenshots img:hover {
       z-index: 5;
@@ -211,7 +195,6 @@
       100% { transform: translateY(10px); }
     }
 
-    /* Freelance image adjustment */
     .freelance img {
       max-width: 320px;
       margin: 0 20px;
@@ -243,6 +226,81 @@
       font-weight: bold;
     }
 
+    .scroll-archive {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .scroll-archive h2 {
+      text-align: center;
+      color: #7ee8fa;
+      margin-bottom: 20px;
+    }
+
+    .scroll-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .card-wrapper {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 10px;
+      scrollbar-width: none;
+    }
+
+    .card-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cert-card {
+      min-width: 220px;
+      max-width: 220px;
+      background: rgba(0, 191, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .cert-card:hover {
+      transform: scale(1.05);
+    }
+
+    .cert-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .scroll-btn {
+      background: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .scroll-btn:hover {
+      background: #0099cc;
+    }
+
+    .scroll-btn.left { margin-right: 10px; }
+    .scroll-btn.right { margin-left: 10px; }
+
     footer {
       text-align: center;
       padding: 30px;
@@ -254,7 +312,6 @@
       color: #00bfff;
     }
 
-    /* Custom cursor + glow on click */
     .cursor-dot {
       width: 12px;
       height: 12px;
@@ -280,67 +337,41 @@
     }
 
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      header img {
-        margin-top: 20px;
-      }
-
-      .project {
-        flex-direction: column;
-      }
-
-      .trip-planner-screenshots {
-        width: 90vw;
-        height: auto;
-      }
-
-      .trip-planner-screenshots img {
-        position: relative;
-        margin: 10px auto;
-        animation: none;
-      }
+      header { flex-direction: column; text-align: center; }
+      header img { margin-top: 20px; }
+      .project { flex-direction: column; }
+      .trip-planner-screenshots { width: 90vw; height: auto; }
+      .trip-planner-screenshots img { position: relative; margin: 10px auto; animation: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Abstract shapes -->
   <div class="shape one"></div>
   <div class="shape two"></div>
   <div class="shape three"></div>
 
-  <!-- Custom cursor -->
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-glow" id="cursor-glow"></div>
 
-  <!-- Navbar -->
   <nav>
     <div><strong>Sohyb</strong></div>
     <div>
       <a href="#projects">Projects</a>
       <a href="#archive">Archive</a>
-      <a href="#contact">Contact</a>
+      <a href="#scroll-archive">Certificates</a>
     </div>
   </nav>
 
-  <!-- Header -->
   <header>
     <div class="header-text">
       <h1>Sohyb</h1>
       <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
       <p class="university">Engineering student at Al-Azhar University, Cairo</p>
     </div>
-    <img src="your-photo.jpg" alt="Sohyb's Photo" />
+    <img src="sohyb.png" alt="Sohyb's Photo" />
   </header>
 
-  <!-- Projects -->
   <section id="projects">
-
-    <!-- Project 1 -->
     <div class="project left">
       <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
       <div class="text">
@@ -348,8 +379,6 @@
         <p>Interactive map using Leaflet.js showing public/private transport. Data parsed from Google Maps JSON.</p>
       </div>
     </div>
-
-    <!-- Trip Planner -->
     <div class="project right">
       <div class="text">
         <h2>🧳 Trip Planner Web App</h2>
@@ -361,8 +390,6 @@
         <img src="Exp.png" />
       </div>
     </div>
-
-    <!-- Freelance -->
     <div class="project left freelance">
       <img src="stars.png" alt="5 Stars Rating" />
       <div class="text">
@@ -372,7 +399,6 @@
     </div>
   </section>
 
-  <!-- Archive -->
   <section class="archive" id="archive">
     <h2>📌 Highlights</h2>
     <ul>
@@ -383,22 +409,40 @@
     </ul>
   </section>
 
-  <!-- Footer -->
+  <section class="scroll-archive" id="scroll-archive">
+    <h2>📂 Certificates & Competitions</h2>
+    <div class="scroll-container">
+      <button class="scroll-btn left" onclick="scrollCards(-1)">&#8678;</button>
+      <div class="card-wrapper" id="cardWrapper">
+        <div class="cert-card">
+          <img src="ecpc.png" alt="ECPC Certificate">
+          <p><strong>ECPC Teens</strong><br>2x Honorable Mentions<br>38th Onsite</p>
+        </div>
+        <div class="cert-card">
+          <img src="eoi.png" alt="EOI Certificate">
+          <p><strong>EOI Junior</strong><br>Egypt Olympiad in Informatics 2021</p>
+        </div>
+        <div class="cert-card">
+          <img src="iiot.png" alt="IIOT Certificate">
+          <p><strong>IIOT Port Said</strong><br>Qualified in Egyptian IIOT track</p>
+        </div>
+      </div>
+      <button class="scroll-btn right" onclick="scrollCards(1)">&#8680;</button>
+    </div>
+  </section>
+
   <footer id="contact">
     <p>Contact: <a href="mailto:sohyb@example.com">sohyb@example.com</a></p>
     <p>© 2025 Sohyb</p>
   </footer>
 
-  <!-- JS for cursor and image interaction -->
   <script>
     const dot = document.getElementById('cursor-dot');
     const glow = document.getElementById('cursor-glow');
-
     document.addEventListener('mousemove', (e) => {
       dot.style.left = glow.style.left = e.clientX + 'px';
       dot.style.top = glow.style.top = e.clientY + 'px';
     });
-
     document.addEventListener('click', () => {
       glow.style.transform = 'translate(-50%, -50%) scale(1.5)';
       glow.style.transition = 'transform 0.2s ease-out';
@@ -406,7 +450,6 @@
         glow.style.transform = 'translate(-50%, -50%) scale(1)';
       }, 150);
     });
-
     const images = document.querySelectorAll('#tripScreens img');
     images.forEach(img => {
       img.addEventListener('click', () => {
@@ -414,7 +457,11 @@
         img.style.zIndex = '6';
       });
     });
+    function scrollCards(direction) {
+      const wrapper = document.getElementById('cardWrapper');
+      const scrollAmount = 240;
+      wrapper.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
   </script>
-
 </body>
 </html>
