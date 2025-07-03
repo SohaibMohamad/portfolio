@@ -65,6 +65,14 @@
       align-items: center;
     }
 
+    /* Logo in nav replacing name, bigger size */
+    nav .logo-nav {
+      height: 50px;
+      width: auto;
+      user-select: none;
+      filter: drop-shadow(0 0 8px #00bfffcc);
+    }
+
     nav a {
       color: #7ee8fa;
       text-decoration: none;
@@ -88,45 +96,18 @@
       z-index: 1;
     }
 
-    .header-text {
-      max-width: 600px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    /* Logo in header */
-    .header-text img.logo {
-      height: 90px;
+    /* Header left side with just logo, bigger size */
+    .header-logo {
+      height: 120px;
       width: auto;
-      border-radius: 12px;
-      filter: drop-shadow(0 0 10px #00bfffcc);
+      user-select: none;
+      filter: drop-shadow(0 0 12px #00bfffcc);
       cursor: default;
     }
 
-    /* Text next to logo */
-    .header-text .text-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .header-text .text-content h1 {
-      font-size: 2.5rem;
-      color: #a6e3e9;
-      margin-bottom: 10px;
-      user-select: none;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #cde7f0;
-      user-select: none;
-    }
-
-    .university {
-      margin-top: 10px;
-      color: #7ee8fa;
-      font-style: italic;
+    /* Hide header text (name and descriptions) completely as per request */
+    .header-text {
+      display: none;
     }
 
     header img.profile {
@@ -186,31 +167,28 @@
       order: 2;
     }
 
-    /* Trip planner screenshots container fixed and vertical stacking */
+    /* Trip planner screenshots container with floating overlapping images on right side */
     .trip-planner-screenshots {
       position: relative;
       width: 320px;
-      height: auto;
+      height: 430px;
       margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
     }
 
-    /* Trip planner images styled as cards and stacked vertically */
     .trip-planner-screenshots img {
+      position: absolute;
       width: 280px;
       border-radius: 14px;
       box-shadow: 0 15px 35px rgba(0, 191, 255, 0.5);
       transition: transform 0.4s ease, z-index 0.2s ease;
-      cursor: pointer;
-      position: relative;
-      user-select: none;
       animation: float 6s ease-in-out infinite alternate;
+      cursor: pointer;
+      user-select: none;
     }
 
-    /* Remove absolute positioning and place stacked vertically */
-    /* Remove nth-child positioning */
+    .trip-planner-screenshots img:nth-child(1) { top: 10px; left: 20px; z-index: 1; }
+    .trip-planner-screenshots img:nth-child(2) { top: 60px; left: 0; z-index: 1; }
+    .trip-planner-screenshots img:nth-child(3) { top: 110px; left: 40px; z-index: 1; }
 
     .trip-planner-screenshots img:hover {
       z-index: 5;
@@ -373,26 +351,24 @@
 
     @media (max-width: 768px) {
       header { flex-direction: column; text-align: center; }
-      .header-text {
-        justify-content: center;
-        gap: 12px;
+      /* Hide header logo on mobile if needed, or center it */
+      .header-logo {
+        margin-bottom: 20px;
       }
-      header img.profile { margin-top: 20px; }
       .project { flex-direction: column; }
+      /* Trip planner screenshots stacked horizontally on small */
       .trip-planner-screenshots {
         width: 90vw;
         height: auto;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
       }
       .trip-planner-screenshots img {
         position: relative;
-        margin: 0;
+        margin: 10px auto;
         animation: none;
-        width: 100px;
-        border-radius: 12px;
-        transform: scale(1);
+        top: auto !important;
+        left: auto !important;
+        transform: scale(1) !important;
+        z-index: 1 !important;
       }
     }
 
@@ -471,7 +447,8 @@
   <div class="cursor-glow" id="cursor-glow"></div>
 
   <nav>
-    <div><strong>Sohyb</strong></div>
+    <!-- Replace Sohyb text with logo in nav -->
+    <img src="slogo.png" alt="Sohyb Logo" class="logo-nav" />
     <div>
       <a href="#projects">Projects</a>
       <a href="#archive">Highlights</a>
@@ -481,15 +458,8 @@
   </nav>
 
   <header>
-    <div class="header-text">
-      <!-- replaced h1 Sohyb text with logo image -->
-      <img src="slogo.png" alt="Sohyb Logo" class="logo" />
-      <div class="text-content">
-        <h1>Sohyb</h1>
-        <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
-        <p class="university">Engineering student at Al-Azhar University, Cairo</p>
-      </div>
-    </div>
+    <!-- Only show the logo, no name or text -->
+    <img src="slogo.png" alt="Sohyb Logo" class="header-logo" />
     <img src="sohyb.png" alt="Sohyb's Photo" class="profile" />
   </header>
 
