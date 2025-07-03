@@ -128,20 +128,20 @@
       font-size: 1rem;
     }
 
-    /* Profile photo updated: no circle, bigger, fully visible */
     header img.profile {
-      width: 220px;
-      height: 220px;
-      border-radius: 0;       /* removed circle */
-      border: none;           /* removed border */
-      object-fit: contain;    /* show full image */
-      object-position: center center;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid #7ee8fa;
+      object-fit: cover; /* Keep cover for cropping */
+      object-position: center center; /* Center the image */
       user-select: none;
       flex-shrink: 0;
       cursor: default;
       display: block;
       box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
-      background-color: transparent;
+      /* Added padding and background to avoid photo overflow */
+      background-color: #000; /* optional, for contrast */
     }
 
     section {
@@ -336,6 +336,11 @@
       transition: transform 0.3s ease;
     }
 
+    /* Increase review3 image size */
+    .cert-card:nth-child(3) img {
+      max-height: 180px; /* bigger */
+    }
+
     .scroll-btn {
       display: none;
     }
@@ -404,6 +409,7 @@
       }
     }
 
+    /* Shooting stars */
     .shooting-stars {
       position: fixed;
       top: 0;
@@ -428,19 +434,18 @@
       opacity: 0.7;
       border-radius: 50%;
       animation: shoot 3.5s linear infinite;
-      transform-origin: top center;
+      transform-origin: top center; /* Changed from bottom center to top center */
+      transform: rotate(45deg); /* rotate so tip is pointing bottom right */
     }
 
     .shooting-stars::before {
       left: 20%;
       animation-delay: 0s;
-      transform: rotate(45deg);
     }
 
     .shooting-stars::after {
       left: 60%;
       animation-delay: 1.7s;
-      transform: rotate(45deg);
     }
 
     @keyframes shoot {
@@ -520,15 +525,19 @@
       <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
       <div class="text">
         <h2>🚍 Transport Map of Egypt</h2>
-        <p>Developed a web map using Leaflet.js to visualize Egypt’s public and private transportation routes, including buses and metro lines not shown on Google Maps. Built with HTML, CSS, and JS, focusing on clean and solid UX/UI design.</p>
-        <p>Processed transport data by parsing Google Maps JSON coordinates, using Python to convert them into usable route formats.</p>
+        <p>Developed a web map using Leaflet.js that visualizes some of Egypt’s main public and private transportation routes, including buses and metro lines not always shown on Google Maps. Built with HTML, CSS, and JS, focusing on clean and solid UX/UI design.
+
+Processed transport data by parsing Google Maps JSON coordinates, using Python to convert them into usable route formats.</p>
+        <p><a href="https://your-transport-map-link.example" target="_blank" rel="noopener" style="color:#00bfff; text-decoration: underline;">Visit the website</a></p>
       </div>
     </div>
 
     <div class="project left">
       <div class="text">
         <h2>🧳 Trip Planner Web App</h2>
-        <p>A ReactJS app integrating budgeting, planning, and visualization for trips. Features floating UI cards and dynamic charting to track expenses and plans efficiently.</p>
+        <p>A ReactJS app integrating budgeting, planning, and visualization for trips. Features floating UI cards and dynamic charting to track expenses and plans efficiently.
+</p>
+        <p><a href="https://github.com/YOUR_GITHUB_USERNAME/trip-planner" target="_blank" rel="noopener" style="color:#00bfff; text-decoration: underline;">View on GitHub</a></p>
       </div>
       <div class="trip-planner-screenshots" id="tripScreens">
         <img src="MainMenu.png" alt="Main Menu Screenshot" />
@@ -541,8 +550,10 @@
       <img src="stars.png" alt="5 Stars Rating" />
       <div class="text">
         <h2>🌟 Freelance Experience</h2>
-        <p>5-star rated freelancer on Mostaql.com with strong experience as a web designer and graphic designer. Skilled in building custom store makers, WordPress sites, and UI panels for clients.</p>
-        <p>Received 3 positive reviews from recruiters praising communication, patience, and quality of work.</p>
+        <p>5-star rated freelancer on Mostaql.com with strong experience as a web designer and graphic designer. Skilled in building custom store makers, WordPress sites, and UI panels for clients.
+
+Received 3 positive reviews from recruiters praising communication, patience, and quality of work.</p>
+        <p><a href="https://mostaql.com/profile/YOUR_PROFILE" target="_blank" rel="noopener" style="color:#00bfff; text-decoration: underline;">View my Mostaql profile</a></p>
       </div>
     </div>
   </section>
@@ -561,50 +572,63 @@
     <h2>💬 Customer Reviews</h2>
     <div class="scroll-container">
       <button class="scroll-btn left" onclick="scrollCards(-1)">&#8678;</button>
-      <div class="card-wrapper">
+      <div class="card-wrapper" id="cardWrapper">
         <div class="cert-card">
-          <img src="review1.jpg" alt="Review 1" />
-          <p>"Thank you very much for your creativity and precision. I recommend that everyone deal with him. He is also known for his patience. Many thanks."</p>
+          <img src="review1.png" alt="Review 1" />
+          <p>"Thank you very much for your creativity and precision. I recommend that everyone deal with him. He is also known for his patience. Thank you very much." — Client A</p>
         </div>
         <div class="cert-card">
-          <img src="review2.jpg" alt="Review 2" />
-          <p>"Very cooperative even in modifications I recommend him"</p>
+          <img src="review2.png" alt="Review 2" />
+          <p>"Very cooperative even in modifications I recommend him" — Client B</p>
         </div>
         <div class="cert-card">
-          <img src="review3.jpg" alt="Review 3" />
-          <p>"Excellent, very patient, has high communication skills, quick to deliver work, and I recommend dealing with him"</p>
+          <img src="review3.png" alt="Review 3" />
+          <p>"Excellent, very patient, has high communication skills, quick to deliver work, and I recommend dealing with him" — Client C</p>
         </div>
       </div>
       <button class="scroll-btn right" onclick="scrollCards(1)">&#8680;</button>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Sohyb — Fullstack Developer & Designer</p>
-    <p><a href="mailto:sohaib.mohamad.elsayed@gmail.com">sohaib.mohamad.elsayed@gmail.com</a></p>
-    <p><a href="https://github.com/SohaibMohamad">Github</a></p>
-    <p><a href="www.linkedin.com/in/sohaib-mohammad-982298217">Linkedin</a></p>
+  <footer id="contact">
+    <p>Contact me:</p>
+    <p>
+      <a href="mailto:sohaib.mohamad.elsayed@gmail.com">Email</a> |
+      <a href="https://github.com/SohaibMohamad" target="_blank" rel="noopener">GitHub</a> |
+      <a href="https://www.linkedin.com/in/sohaib-mohammad-982298217/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+    <p>© 2025 Sohyb</p>
   </footer>
 
   <script>
-    // Cursor movement
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorGlow = document.getElementById('cursor-glow');
-
-    document.addEventListener('mousemove', e => {
-      cursorDot.style.top = e.clientY + 'px';
-      cursorDot.style.left = e.clientX + 'px';
-      cursorGlow.style.top = e.clientY + 'px';
-      cursorGlow.style.left = e.clientX + 'px';
+    const dot = document.getElementById('cursor-dot');
+    const glow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = glow.style.left = e.clientX + 'px';
+      dot.style.top = glow.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('click', () => {
+      glow.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      glow.style.transition = 'transform 0.2s ease-out';
+      setTimeout(() => {
+        glow.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 150);
     });
 
-    // Scroll cards on reviews (hidden now, but buttons remain)
-    function scrollCards(direction) {
-      const wrapper = document.querySelector('.card-wrapper');
-      wrapper.scrollBy({
-        left: direction * 250,
-        behavior: 'smooth'
+    // Trip planner images click bring to front
+    const images = document.querySelectorAll('#tripScreens img');
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        images.forEach(i => i.style.zIndex = '1');
+        img.style.zIndex = '6';
       });
+    });
+
+    // Scroll cards function
+    function scrollCards(direction) {
+      const wrapper = document.getElementById('cardWrapper');
+      const scrollAmount = 240;
+      wrapper.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
   </script>
 </body>
