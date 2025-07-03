@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Your Name | Fullstack Developer</title>
   <style>
-    /* Background gradient with subtle abstract shapes */
+    /* General Reset and Body */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -16,39 +22,26 @@
       overflow-x: hidden;
     }
 
-    /* subtle moving shapes using CSS */
-    body::before, body::after {
-      content: "";
-      position: fixed;
-      top: -20%;
-      left: -10%;
-      width: 150vw;
-      height: 150vh;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.07), transparent 70%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05), transparent 60%);
-      z-index: 0;
-      animation: moveBackground 60s linear infinite;
+    /* Abstract SVG shapes in background */
+    .abstract-shape {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.05;
+      pointer-events: none;
     }
 
-    body::after {
-      top: auto;
-      bottom: -20%;
-      left: auto;
-      right: -10%;
-      background:
-        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.04), transparent 60%),
-        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.06), transparent 65%);
-      animation-direction: reverse;
+    .shape1 {
+      top: 50px;
+      left: -100px;
+      transform: rotate(25deg);
+      width: 600px;
     }
 
-    @keyframes moveBackground {
-      0% {
-        transform: translate(0, 0);
-      }
-      100% {
-        transform: translate(-10%, 10%);
-      }
+    .shape2 {
+      bottom: 100px;
+      right: -150px;
+      transform: rotate(-15deg);
+      width: 700px;
     }
 
     header {
@@ -94,19 +87,17 @@
       flex-wrap: wrap;
       margin-bottom: 60px;
       align-items: center;
-      background: rgba(255 255 255 / 0.1);
+      background: rgba(255 255 255 / 0.08);
       border-radius: 12px;
       padding: 20px;
-      box-shadow:
-        0 0 15px rgba(0, 191, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.15);
       backdrop-filter: blur(6px);
       transition: background 0.3s ease;
+      overflow: visible;
     }
 
     .project:hover {
-      background: rgba(255 255 255 / 0.15);
-      box-shadow:
-        0 0 30px rgba(0, 191, 255, 0.4);
+      background: rgba(255 255 255 / 0.12);
     }
 
     .project img {
@@ -117,16 +108,12 @@
       transition: transform 0.5s ease, box-shadow 0.5s ease;
       transform-style: preserve-3d;
       cursor: default;
-      box-shadow:
-        0 8px 20px rgba(0,0,0,0.3);
       background: transparent;
     }
 
-    /* 3D hover effect on images except stars */
     .project:not(.freelance-rating) img:hover {
       transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
-      box-shadow:
-        0 15px 40px rgba(0,191,255,0.6);
+      box-shadow: 0 15px 40px rgba(0,191,255,0.6);
     }
 
     .project .text {
@@ -134,6 +121,8 @@
       padding: 20px;
       min-width: 280px;
       color: #d4f1f9;
+      position: relative;
+      z-index: 2;
     }
 
     .left .text {
@@ -152,18 +141,11 @@
       order: 2;
     }
 
-    /* Trip planner screenshots stacked with subtle floating animation */
     .trip-planner-container {
       display: flex;
-      flex-wrap: nowrap;
       gap: 30px;
       align-items: center;
       justify-content: space-between;
-    }
-
-    .trip-planner-text {
-      flex: 1;
-      min-width: 280px;
     }
 
     .trip-planner-screenshots {
@@ -180,7 +162,6 @@
       border-radius: 14px;
       box-shadow: 0 15px 35px rgba(0,191,255,0.5);
       background: transparent;
-      cursor: default;
       user-select: none;
       transition: box-shadow 0.3s ease;
       animation-timing-function: ease-in-out;
@@ -189,19 +170,20 @@
       animation-duration: 6s;
     }
 
-    /* Stack them overlapped with slight vertical and horizontal offset */
     .trip-planner-screenshots img:nth-child(1) {
       top: 0;
       left: 20px;
       animation-name: float1;
       z-index: 3;
     }
+
     .trip-planner-screenshots img:nth-child(2) {
       top: 50px;
       left: 0;
       animation-name: float2;
       z-index: 2;
     }
+
     .trip-planner-screenshots img:nth-child(3) {
       top: 100px;
       left: 40px;
@@ -209,7 +191,6 @@
       z-index: 1;
     }
 
-    /* Subtle vertical floating animations */
     @keyframes float1 {
       0% { transform: translateY(0px) rotateZ(-1deg); }
       100% { transform: translateY(10px) rotateZ(1deg); }
@@ -223,40 +204,15 @@
       100% { transform: translateY(-5px) rotateZ(2deg); }
     }
 
-    .trip-planner-screenshots img:hover {
-      box-shadow: 0 20px 50px rgba(0,191,255,0.9);
-      animation-play-state: paused;
-      transform: scale(1.05);
-      z-index: 10 !important;
-    }
-
-    /* Freelance rating section with floating stars - no flip, subtle glow only */
-    .freelance-rating.project {
-      align-items: center;
-      gap: 40px;
-      background: transparent !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
-
     .freelance-rating img {
       max-width: 280px;
       width: 100%;
       margin: 0 20px;
       border-radius: 0;
       background: transparent;
-      box-shadow:
-        0 0 45px rgba(0, 191, 255, 0.9);
-      transition: box-shadow 0.6s ease;
-      cursor: default;
-      filter: drop-shadow(0 5px 8px rgba(0,0,0,0.45));
-      /* NO transform or flip on hover */
-    }
-
-    .freelance-rating img:hover {
-      box-shadow:
-        0 0 70px rgba(0, 191, 255, 1);
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.6));
+      box-shadow: none; /* No glow now */
+      transform: translateX(-30px) translateY(-10px); /* Popping out */
+      z-index: 3;
     }
 
     @media (max-width: 768px) {
@@ -281,7 +237,6 @@
       }
 
       .trip-planner-screenshots {
-        position: relative;
         width: 90vw;
         height: auto;
         margin-top: 20px;
@@ -292,11 +247,11 @@
         width: 90%;
         margin: 10px auto;
         animation: none !important;
-        box-shadow: 0 8px 20px rgba(0,191,255,0.5);
         transform: none !important;
       }
 
       .freelance-rating img {
+        transform: none;
         margin: 20px auto !important;
       }
     }
@@ -306,14 +261,11 @@
       margin: 40px auto 80px;
       padding: 20px;
       color: #c1e4f6;
-      position: relative;
-      z-index: 10;
     }
 
     .archive h2 {
       color: #00bfff;
       margin-bottom: 15px;
-      text-shadow: 0 0 8px #00bfffaa;
     }
 
     .archive ul {
@@ -336,8 +288,6 @@
       text-align: center;
       padding: 30px 20px;
       margin-top: 50px;
-      position: relative;
-      z-index: 10;
     }
 
     footer a {
@@ -347,7 +297,6 @@
     a {
       color: #55c8ff;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
 
     a:hover {
@@ -358,6 +307,15 @@
 </head>
 <body>
 
+  <!-- Abstract SVG Shapes -->
+  <svg class="abstract-shape shape1" viewBox="0 0 200 200">
+    <path fill="#ffffff" d="M41.4,-70.6C53.7,-63.5,64.8,-53.2,72.3,-40.9C79.7,-28.6,83.5,-14.3,82.1,-0.2C80.6,13.9,74,27.9,66.1,40.8C58.3,53.6,49.1,65.2,36.7,72.6C24.3,80,8.6,83.2,-6.5,88.6C-21.7,93.9,-36.3,101.4,-46.9,95.4C-57.5,89.3,-64.2,69.8,-66.2,51.3C-68.3,32.7,-65.6,15.1,-66.1,-1.5C-66.6,-18.1,-70.2,-36.3,-63.2,-47.6C-56.2,-58.9,-38.6,-63.3,-22.2,-68.1C-5.9,-72.8,9.3,-77.8,24.9,-78.7C40.6,-79.6,56.6,-76.5,70.1,-66.9C83.6,-57.3,95,-41.3,98.2,-24.8C101.3,-8.3,96.2,8.6,94.7,25.6C93.3,42.6,95.6,59.8,92.3,75.6C88.9,91.4,80,105.9,67.6,117.1C55.3,128.3,39.5,136.1,22.6,139.3C5.6,142.5,-12.5,141.1,-30.2,135.5C-47.9,129.8,-65.3,119.8,-77.4,104.2C-89.4,88.6,-96.1,67.4,-101.1,48.1C-106.1,28.9,-109.3,11.4,-109.3,-6.5C-109.3,-24.3,-106.2,-42.7,-97.2,-58.8C-88.3,-75,-73.6,-89,-56.6,-96.6C-39.6,-104.3,-20.3,-105.5,-1.1,-103.2C18.1,-100.8,36.3,-95.3,41.4,-70.6Z" transform="translate(100 100)" />
+  </svg>
+
+  <svg class="abstract-shape shape2" viewBox="0 0 200 200">
+    <path fill="#ffffff" d="M47.2,-58.6C61.5,-48.4,72.5,-30.7,73.5,-13.2C74.5,4.4,65.5,21.8,55.2,35.9C44.8,50,33.1,60.9,19.6,66.7C6.2,72.5,-9.2,73.2,-23.7,68.6C-38.2,64.1,-51.8,54.3,-60.1,41.1C-68.3,27.9,-71.2,11.5,-68.7,-3.3C-66.2,-18.1,-58.2,-31.4,-47.6,-43C-37,-54.6,-24,-64.6,-9.5,-67.9C5,-71.2,19.9,-67.9,34.8,-61.7C49.6,-55.5,64.4,-46.4,47.2,-58.6Z" transform="translate(100 100)" />
+  </svg>
+
   <header>
     <h1>Your Name</h1>
     <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
@@ -365,40 +323,43 @@
     <p>I build interactive, responsive web applications with clean UX, solid logic, and data visualization. Competitive programming helped me master C++, algorithms, and structured thinking.</p>
   </header>
 
+  <!-- Project 1 -->
   <section class="project left">
     <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
     <div class="text">
       <h2>🚍 Transport Map of Egypt</h2>
       <p>Web map using Leaflet.js to visualize public/private transport routes. Processed JSON from Google Maps to show private bus and metro routes unavailable in standard apps.</p>
-      <a href="https://github.com/YOUR_USERNAME/transport-map" target="_blank" rel="noopener">View Project →</a>
+      <a href="#">View Project →</a>
     </div>
   </section>
 
+  <!-- Project 2: Trip Planner -->
   <section class="project right">
     <div class="trip-planner-container">
-      <div class="trip-planner-text">
+      <div class="trip-planner-text text">
         <h2>🧳 Trip Planner Web App</h2>
         <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
-        <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank" rel="noopener">View Project →</a>
+        <a href="#">View Project →</a>
       </div>
-      <div class="trip-planner-screenshots" aria-label="Trip planner screenshots">
-        <img src="MainMenu.png" alt="Trip Planner Main Menu Screenshot" />
-        <img src="Charts.png" alt="Trip Planner Charts Screenshot" />
-        <img src="Exp.png" alt="Trip Planner Expenses Screenshot" />
+      <div class="trip-planner-screenshots">
+        <img src="MainMenu.png" alt="Main Menu" />
+        <img src="Charts.png" alt="Charts" />
+        <img src="Exp.png" alt="Expenses" />
       </div>
     </div>
   </section>
 
-  <!-- Freelance rating with floating stars on left -->
-  <section class="project freelance-rating left" style="background:none; box-shadow:none; padding:0;">
+  <!-- Project 3: Freelance Experience with floating stars -->
+  <section class="project left freelance-rating">
     <img src="stars.png" alt="5 Stars Rating" />
-    <div class="text" style="color:#c1e4f6;">
+    <div class="text">
       <h2>🌟 Freelance Experience</h2>
       <p>I have a 5-star rating on Mostaql.com as a freelance web and graphic designer. Experienced in building panels using store makers and WordPress.</p>
-      <a href="https://mostaql.com/YOUR_PROFILE" target="_blank" rel="noopener">View My Freelance Portfolio →</a>
+      <a href="#">View My Freelance Portfolio →</a>
     </div>
   </section>
 
+  <!-- Archive Section -->
   <section class="archive">
     <h2>📌 Highlights</h2>
     <ul>
@@ -410,11 +371,7 @@
   </section>
 
   <footer>
-    <p>Contact: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    <p>
-      <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">GitHub</a> |
-      <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
-    </p>
+    <p>Contact: <a href="mailto:you@example.com">you@example.com</a></p>
     <p>&copy; 2025 Your Name</p>
   </footer>
 
