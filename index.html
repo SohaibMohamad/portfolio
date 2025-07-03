@@ -29,6 +29,12 @@
       margin: 10px auto;
     }
 
+    header p.university {
+      margin-top: 15px;
+      font-style: italic;
+      color: #00bfff;
+    }
+
     section {
       max-width: 1000px;
       margin: 50px auto;
@@ -49,14 +55,14 @@
       margin: 10px;
       box-shadow:
         0 8px 15px rgba(0,0,0,0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
       transform-style: preserve-3d;
       cursor: default;
     }
 
     /* 3D hover effect on project images */
     .project img:hover {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(15px);
+      transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
       box-shadow:
         0 12px 25px rgba(0,0,0,0.3);
     }
@@ -141,12 +147,12 @@
       box-shadow:
         0 8px 15px rgba(0,0,0,0.3),
         0 0 30px rgba(0,191,255,0.4);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
       transform-style: preserve-3d;
     }
 
     .stars-container:hover img {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(15px);
+      transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
       box-shadow:
         0 12px 25px rgba(0,0,0,0.4),
         0 0 40px rgba(0,191,255,0.7);
@@ -181,6 +187,7 @@
   <header>
     <h1>Your Name</h1>
     <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
+    <p class="university">Studying Engineering at Al-Azhar University, Cairo</p>
     <p>I build interactive, responsive web applications with clean UX, solid logic, and data visualization. Competitive programming helped me master C++, algorithms, and structured thinking.</p>
   </header>
 
@@ -189,7 +196,7 @@
     <div class="text">
       <h2>🚍 Transport Map of Egypt</h2>
       <p>Web map using Leaflet.js to visualize public/private transport routes. Processed JSON from Google Maps to show private bus and metro routes unavailable in standard apps.</p>
-      <a href="https://github.com/YOUR_USERNAME/transport-map" target="_blank">View Project →</a>
+      <a href="https://github.com/YOUR_USERNAME/transport-map" target="_blank" rel="noopener">View Project →</a>
     </div>
   </section>
 
@@ -198,7 +205,7 @@
     <div class="text">
       <h2>🧳 Trip Planner Web App</h2>
       <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
-      <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank">View Project →</a>
+      <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank" rel="noopener">View Project →</a>
     </div>
   </section>
 
@@ -225,8 +232,8 @@
   <footer>
     <p>Contact: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
     <p>
-      <a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a> |
-      <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+      <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">GitHub</a> |
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
     </p>
     <p>&copy; 2025 Your Name</p>
   </footer>
