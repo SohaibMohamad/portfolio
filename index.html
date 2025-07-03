@@ -70,6 +70,7 @@
     .project .text {
       flex: 1;
       padding: 20px;
+      min-width: 280px;
     }
 
     .left .text {
@@ -86,6 +87,86 @@
 
     .right img {
       order: 2;
+    }
+
+    /* Gallery for trip planner screenshots */
+    .screenshot-gallery {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .screenshot-gallery img {
+      width: 30%;
+      min-width: 120px;
+      border-radius: 10px;
+      box-shadow:
+        0 8px 15px rgba(0,0,0,0.15);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+      cursor: default;
+    }
+
+    .screenshot-gallery img:hover {
+      transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.3);
+    }
+
+    /* Freelance rating section as project with stars floating */
+    .freelance-rating.project {
+      align-items: center;
+      gap: 40px;
+    }
+
+    .freelance-rating img {
+      max-width: 280px;
+      width: 100%;
+      margin: 0 20px;
+      border-radius: 0;
+      background: transparent;
+      box-shadow:
+        0 0 40px rgba(0, 191, 255, 0.7);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+      cursor: default;
+      /* Make the stars "stand" out, no card */
+      filter: drop-shadow(0 5px 7px rgba(0,0,0,0.4));
+    }
+
+    .freelance-rating img:hover {
+      transform: rotateY(15deg) rotateX(8deg) translateZ(30px);
+      box-shadow:
+        0 0 60px rgba(0, 191, 255, 0.9);
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5));
+    }
+
+    @media (max-width: 768px) {
+      .project {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .project .text {
+        order: 2 !important;
+      }
+
+      .project img {
+        order: 1 !important;
+        max-width: 90vw;
+        margin: 15px auto;
+      }
+
+      .screenshot-gallery {
+        justify-content: center;
+      }
+
+      .screenshot-gallery img {
+        width: 80%;
+        min-width: auto;
+      }
     }
 
     .archive ul {
@@ -119,22 +200,6 @@
     a:hover {
       text-decoration: underline;
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .project {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .project .text {
-        order: 2 !important;
-      }
-
-      .project img {
-        order: 1 !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -156,16 +221,21 @@
   </section>
 
   <section class="project right">
-    <img src="https://via.placeholder.com/400x250.png?text=Trip+Planner" alt="Trip Planner App" />
-    <div class="text">
+    <div class="text" style="flex:1; min-width:280px;">
       <h2>🧳 Trip Planner Web App</h2>
       <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
       <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank" rel="noopener">View Project →</a>
+
+      <div class="screenshot-gallery" aria-label="Trip planner screenshots">
+        <img src="MainMenu.png" alt="Trip Planner Main Menu Screenshot" />
+        <img src="Charts.png" alt="Trip Planner Charts Screenshot" />
+        <img src="Exp.png" alt="Trip Planner Expenses Screenshot" />
+      </div>
     </div>
   </section>
 
-  <!-- Freelance Rating Section as a project with image left and text right -->
-  <section class="project left">
+  <!-- Freelance rating with stars floating on left -->
+  <section class="project freelance-rating left">
     <img src="stars.png" alt="5 Stars Rating" />
     <div class="text">
       <h2>🌟 Freelance Experience</h2>
