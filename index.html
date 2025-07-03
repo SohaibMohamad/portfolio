@@ -60,7 +60,7 @@
       cursor: default;
     }
 
-    /* 3D hover effect on project images */
+    /* 3D hover effect on images */
     .project img:hover {
       transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
       box-shadow:
@@ -120,51 +120,6 @@
       text-decoration: underline;
     }
 
-    /* Freelance Rating Section */
-    .freelance-rating {
-      max-width: 1000px;
-      margin: 50px auto;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .freelance-rating h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .stars-container {
-      display: inline-block;
-      position: relative;
-      perspective: 800px;
-      cursor: default;
-    }
-
-    .stars-container img {
-      width: 250px;
-      max-width: 90vw;
-      border-radius: 12px;
-      box-shadow:
-        0 8px 15px rgba(0,0,0,0.3),
-        0 0 30px rgba(0,191,255,0.4);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      transform-style: preserve-3d;
-    }
-
-    .stars-container:hover img {
-      transform: rotateY(15deg) rotateX(8deg) translateZ(20px);
-      box-shadow:
-        0 12px 25px rgba(0,0,0,0.4),
-        0 0 40px rgba(0,191,255,0.7);
-    }
-
-    .freelance-rating p {
-      margin-top: 15px;
-      font-weight: 600;
-      color: #007acc;
-      font-size: 1.2rem;
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       .project {
@@ -209,12 +164,13 @@
     </div>
   </section>
 
-  <!-- Freelance Rating Section -->
-  <section class="freelance-rating">
-    <h2>🌟 Freelance Rating</h2>
-    <div class="stars-container">
-      <img src="stars.png" alt="5 Stars Rating" />
-      <p>5-star rating on Mostaql.com freelance platform</p>
+  <!-- Freelance Rating Section as a project with image left and text right -->
+  <section class="project left">
+    <img src="stars.png" alt="5 Stars Rating" />
+    <div class="text">
+      <h2>🌟 Freelance Experience</h2>
+      <p>I have a 5-star rating on Mostaql.com as a freelance web and graphic designer. Experienced in building panels using store makers and WordPress.</p>
+      <a href="https://mostaql.com/YOUR_PROFILE" target="_blank" rel="noopener">View My Freelance Portfolio →</a>
     </div>
   </section>
 
@@ -223,7 +179,6 @@
     <ul>
       <li>🏆 ECPC Teens – 2x Honorable Mention, 38th onsite qualifier</li>
       <li>🌍 EOI Junior Division 2021 & IIOT Egyptian Qualification (Port Said)</li>
-      <li>🛠️ Freelance: 5★ on Mostaql (Web & Graphic Design via WordPress + Panel Builders)</li>
       <li>💻 Stack: HTML, CSS, JavaScript, React, Python, C++, Java</li>
       <li>📜 English: C2 EFSET Certificate</li>
     </ul>
