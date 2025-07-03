@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name | Fullstack Developer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 10px auto;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .project {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+      align-items: center;
+    }
+
+    .project img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      margin: 10px;
+    }
+
+    .project .text {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .left .text {
+      order: 2;
+    }
+
+    .left img {
+      order: 1;
+    }
+
+    .right .text {
+      order: 1;
+    }
+
+    .right img {
+      order: 2;
+    }
+
+    .archive ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .archive li {
+      margin: 10px 0;
+      border-left: 4px solid #007acc;
+      padding-left: 10px;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #00bfff;
+    }
+
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .project {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .project .text {
+        order: 2 !important;
+      }
+
+      .project img {
+        order: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Your Name</h1>
+    <p>Fullstack Developer • CP Enthusiast • UI/UX Designer</p>
+    <p>I build interactive, responsive web applications with clean UX, solid logic, and data visualization. Competitive programming helped me master C++, algorithms, and structured thinking.</p>
+  </header>
+
+  <section class="project left">
+    <img src="https://via.placeholder.com/400x250.png?text=Transport+Map" alt="Transport Map" />
+    <div class="text">
+      <h2>🚍 Transport Map of Egypt</h2>
+      <p>Web map using Leaflet.js to visualize public/private transport routes. Processed JSON from Google Maps to show private bus and metro routes unavailable in standard apps.</p>
+      <a href="https://github.com/YOUR_USERNAME/transport-map" target="_blank">View Project →</a>
+    </div>
+  </section>
+
+  <section class="project right">
+    <img src="https://via.placeholder.com/400x250.png?text=Trip+Planner" alt="Trip Planner App" />
+    <div class="text">
+      <h2>🧳 Trip Planner Web App</h2>
+      <p>ReactJS-based planner that tracks budget, charts expenses, and manages travel plans with clean UX and component logic. Modern design and financial tracking features.</p>
+      <a href="https://github.com/YOUR_USERNAME/trip-planner" target="_blank">View Project →</a>
+    </div>
+  </section>
+
+  <section class="archive">
+    <h2>📌 Highlights</h2>
+    <ul>
+      <li>🏆 ECPC Teens – 2x Honorable Mention, 38th onsite qualifier</li>
+      <li>🌍 EOI Junior Division 2021 & IIOT Egyptian Qualification (Port Said)</li>
+      <li>🛠️ Freelance: 5★ on Mostaql (Web & Graphic Design via WordPress + Panel Builders)</li>
+      <li>💻 Stack: HTML, CSS, JavaScript, React, Python, C++, Java</li>
+      <li>📜 English: C2 EFSET Certificate</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Contact: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+    <p>
+      <a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a> |
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+    </p>
+    <p>&copy; 2025 Your Name</p>
+  </footer>
+
+</body>
+</html>
