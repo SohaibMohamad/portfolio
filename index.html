@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sohaib Mohammad — Fullstack Developer</title>
+  <link rel="icon" type="image/png" href="slogo-modified.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -636,6 +637,27 @@
     }
     .footer-links a:hover { color: var(--accent); }
 
+    /* Shooting stars — CSS only, no JS */
+    .star {
+      position: fixed;
+      width: 120px;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      top: var(--sy, 10%);
+      left: -140px;
+      animation: shoot var(--dur, 4s) var(--delay, 0s) infinite linear;
+    }
+    @keyframes shoot {
+      0%   { opacity: 0;   transform: translate(0, 0) rotate(-30deg); }
+      8%   { opacity: 0.9; }
+      80%  { opacity: 0.6; }
+      100% { opacity: 0;   transform: translate(120vw, 55vw) rotate(-30deg); }
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -665,6 +687,13 @@
 <body>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
+
+  <div class="star" style="--sy:-2%;  --dur:4.2s; --delay:0s;"></div>
+  <div class="star" style="--sy:18%;  --dur:4.8s; --delay:5.5s;"></div>
+  <div class="star" style="--sy:-2%;  --dur:3.8s; --delay:11s;"></div>
+  <div class="star" style="--sy:8%;   --dur:4.5s; --delay:16s;"></div>
+  <div class="star" style="--sy:-2%;  --dur:4.0s; --delay:21s;"></div>
+  <div class="star" style="--sy:22%;  --dur:4.3s; --delay:27s;"></div>
 
   <div class="cursor" id="cur"></div>
   <div class="cursor-ring" id="curRing"></div>
